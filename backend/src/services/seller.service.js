@@ -92,7 +92,7 @@ async function registerSeller(data) {
   const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
   const sellerId = crypto.randomUUID();
 
-  // Public signup is immediately active and approved to sell
+  // Public signup is marked PENDING / PENDING_APPROVAL (KYC verification required)
   await pool.query(
     `INSERT INTO sellers (
       id, owner_name, business_name, legal_name, business_type, email, phone,
@@ -101,7 +101,7 @@ async function registerSeller(data) {
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?,
       ?, ?, ?, ?, ?, ?,
-      'ACTIVE', 'APPROVED', TRUE
+      'PENDING_APPROVAL', 'PENDING', TRUE
     );`,
     [
       sellerId,

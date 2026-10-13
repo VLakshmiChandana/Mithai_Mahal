@@ -43,15 +43,7 @@ async function setup() {
       [adminHash]
     );
 
-    // 4. Activate & Approve all non-suspended sweet shop sellers so they can sell and add sweets immediately
-    await pool.query(
-      `UPDATE sellers 
-       SET account_status = 'ACTIVE', verification_status = 'APPROVED', is_active = 1, updated_at = CURRENT_TIMESTAMP 
-       WHERE account_status != 'SUSPENDED' AND account_status != 'TERMINATED';`
-    );
-
-    console.log('[+] Credentials & Seller statuses successfully configured in database!\n');
-    console.log('[+] All sweet shop sellers are now ACTIVE and APPROVED to add sweets and sell!\n');
+    console.log('[+] Admin and Super Admin credentials successfully configured in database!\n');
     console.log('----------------------------------------------------');
     console.log('SUPER ADMIN CREDENTIALS:');
     console.log('  Email:    superadmin@mithaimahal.com');

@@ -411,10 +411,10 @@ export default function SellerDashboardPage() {
 
       {!isVerified && (
         <div style={{
-          background: '#F0FDF4',
-          border: '1px solid #BBF7D0',
+          background: '#FFFBEB',
+          border: '1px solid #FDE68A',
           borderRadius: 'var(--radius-md)',
-          padding: '1rem 1.25rem',
+          padding: '1.25rem 1.5rem',
           marginBottom: '2rem',
           display: 'flex',
           alignItems: 'center',
@@ -422,13 +422,18 @@ export default function SellerDashboardPage() {
           flexWrap: 'wrap',
           gap: '1rem'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#166534' }}>
-            <CheckCircle size={22} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>
-              Your shop is active! You can add sweets, adjust stock, and start selling immediately.
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', color: '#92400E' }}>
+            <AlertTriangle size={24} style={{ flexShrink: 0 }} />
+            <div>
+              <span style={{ fontSize: '0.95rem', fontWeight: 700, display: 'block' }}>
+                Account Awaiting Verification ({profile?.verification_status || 'PENDING'})
+              </span>
+              <span style={{ fontSize: '0.85rem', color: '#78350F' }}>
+                Product publishing is locked until approved. Upload your FSSAI/GST compliance documents to get platform approval.
+              </span>
+            </div>
           </div>
-          <Link to="/seller/verification" className="btn btn-secondary" style={{ fontSize: '0.82rem', padding: '0.35rem 0.75rem' }}>
+          <Link to="/seller/verification" className="btn btn-primary" style={{ fontSize: '0.85rem', padding: '0.45rem 0.95rem' }}>
             Verification Center
           </Link>
         </div>
@@ -474,23 +479,30 @@ export default function SellerDashboardPage() {
         </button>
 
         <button
-          onClick={() => { setActiveTab('add_product'); handleResetForm(); }}
+          onClick={() => {
+            if (!isVerified) return;
+            setActiveTab('add_product');
+            handleResetForm();
+          }}
+          disabled={!isVerified}
+          title={!isVerified ? 'Verification required to add sweets' : ''}
           style={{
             padding: '0.75rem 1.25rem',
             background: 'none',
             border: 'none',
             borderBottom: activeTab === 'add_product' ? '3px solid var(--maroon-primary)' : '3px solid transparent',
-            color: activeTab === 'add_product' ? 'var(--maroon-primary)' : 'var(--text-secondary)',
+            color: !isVerified ? 'var(--text-muted)' : (activeTab === 'add_product' ? 'var(--maroon-primary)' : 'var(--text-secondary)'),
             fontWeight: activeTab === 'add_product' ? 700 : 500,
             fontSize: '0.95rem',
-            cursor: 'pointer',
+            cursor: !isVerified ? 'not-allowed' : 'pointer',
+            opacity: !isVerified ? 0.6 : 1,
             display: 'flex',
             alignItems: 'center',
             gap: '0.4rem'
           }}
         >
           <Plus size={16} />
-          <span>{editingProduct ? 'Edit Sweet' : 'Add New Sweet'}</span>
+          <span>{editingProduct ? 'Edit Sweet' : 'Add New Sweet'}{!isVerified ? ' (Locked)' : ''}</span>
         </button>
       </div>
 
@@ -713,14 +725,41 @@ export default function SellerDashboardPage() {
           maxWidth: '800px',
           margin: '0 auto'
         }}>
-          <h2 style={{ fontSize: '1.35rem', color: 'var(--maroon-primary)', marginBottom: '0.5rem' }}>
-            {editingProduct ? `Edit "${editingProduct.name}"` : 'Add New Sweet Product'}
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '1.5rem' }}>
-            Provide complete details, weight, pricing, and high-quality photography.
-          </p>
+          {!isVerified ? (
+            <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                borderRadius: '50%',
+                background: '#FEF3C7',
+                color: '#92400E',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 1.25rem'
+              }}>
+                <AlertTriangle size={32} />
+              </div>
+              <h2 style={{ fontSize: '1.35rem', color: 'var(--maroon-primary)', marginBottom: '0.5rem' }}>
+                Product Publishing Locked
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: 1.5 }}>
+                Your sweet shop account verification status is <strong>{profile?.verification_status || 'PENDING'}</strong>. You must submit your FSSAI/GST compliance documents and receive platform Admin approval before publishing sweets to the catalog.
+              </p>
+              <Link to="/seller/verification" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem' }}>
+                Go to Verification Center
+              </Link>
+            </div>
+          ) : (
+            <>
+              <h2 style={{ fontSize: '1.35rem', color: 'var(--maroon-primary)', marginBottom: '0.5rem' }}>
+                {editingProduct ? `Edit "${editingProduct.name}"` : 'Add New Sweet Product'}
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '1.5rem' }}>
+                Provide complete details, weight, pricing, and high-quality photography.
+              </p>
 
-          <form onSubmit={handleProductSubmit}>
+              <form onSubmit={handleProductSubmit}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
               <div>
                 <label style={{ display: 'block', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.35rem' }}>
@@ -936,6 +975,8 @@ export default function SellerDashboardPage() {
               </button>
             </div>
           </form>
+          </>
+          )}
         </div>
       )}
 

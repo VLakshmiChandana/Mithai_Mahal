@@ -336,10 +336,10 @@ async function validateCheckout(userId, { deliveryAddressId = null }) {
   if (
     sellerRows.length === 0 ||
     !sellerRows[0].is_active ||
-    sellerRows[0].account_status === 'SUSPENDED' ||
-    sellerRows[0].account_status === 'TERMINATED'
+    sellerRows[0].account_status !== 'ACTIVE' ||
+    sellerRows[0].verification_status !== 'APPROVED'
   ) {
-    throw new ValidationError('The sweet shop is currently suspended or inactive and cannot accept orders.');
+    throw new ValidationError('The sweet shop is currently awaiting verification or inactive and cannot accept orders.');
   }
 
   // 2. Verify Delivery Address (if provided)
