@@ -91,7 +91,7 @@ async function placeOrder(userId, { deliveryAddressId }) {
     }
     const cart = cartRows[0];
 
-    if (!cart.seller_active || cart.account_status !== 'ACTIVE' || cart.verification_status !== 'APPROVED') {
+    if (!cart.seller_active || cart.account_status === 'SUSPENDED' || cart.account_status === 'TERMINATED') {
       throw new ValidationError('The sweet shop is currently suspended or inactive and cannot accept orders.');
     }
 

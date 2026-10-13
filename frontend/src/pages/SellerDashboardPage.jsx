@@ -411,8 +411,8 @@ export default function SellerDashboardPage() {
 
       {!isVerified && (
         <div style={{
-          background: '#FFFBEB',
-          border: '1px solid #FDE68A',
+          background: '#F0FDF4',
+          border: '1px solid #BBF7D0',
           borderRadius: 'var(--radius-md)',
           padding: '1rem 1.25rem',
           marginBottom: '2rem',
@@ -422,14 +422,14 @@ export default function SellerDashboardPage() {
           flexWrap: 'wrap',
           gap: '1rem'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#B45309' }}>
-            <ShieldAlert size={22} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#166534' }}>
+            <CheckCircle size={22} />
             <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>
-              Your shop verification is currently {profile?.verification_status}. Product publishing is locked until approved.
+              Your shop is active! You can add sweets, adjust stock, and start selling immediately.
             </span>
           </div>
-          <Link to="/seller/verification" className="btn btn-primary" style={{ fontSize: '0.82rem', padding: '0.35rem 0.75rem' }}>
-            Upload Documents
+          <Link to="/seller/verification" className="btn btn-secondary" style={{ fontSize: '0.82rem', padding: '0.35rem 0.75rem' }}>
+            Verification Center
           </Link>
         </div>
       )}

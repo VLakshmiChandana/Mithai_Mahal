@@ -148,7 +148,7 @@ async function listPublicShops(req, res, next) {
     const [rows] = await pool.query(
       `SELECT id, business_name, email, phone, logo, profile_photo, created_at 
        FROM sellers 
-       WHERE is_active = TRUE AND account_status = 'ACTIVE' AND verification_status = 'APPROVED'
+       WHERE is_active = TRUE AND account_status != 'SUSPENDED' AND account_status != 'TERMINATED'
        ORDER BY business_name ASC;`
     );
 
@@ -170,7 +170,7 @@ async function getPublicShopDetails(req, res, next) {
     const [rows] = await pool.query(
       `SELECT id, business_name, email, phone, logo, profile_photo, created_at 
        FROM sellers 
-       WHERE id = ? AND is_active = TRUE AND account_status = 'ACTIVE' AND verification_status = 'APPROVED'
+       WHERE id = ? AND is_active = TRUE AND account_status != 'SUSPENDED' AND account_status != 'TERMINATED'
        LIMIT 1;`,
       [sellerId]
     );

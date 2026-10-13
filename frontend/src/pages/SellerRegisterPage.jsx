@@ -74,7 +74,7 @@ export default function SellerRegisterPage() {
 
       const res = await sellerApi.registerSeller(payload);
       setSuccessData(res.data);
-      showToast('Sweet shop registered! Your application is in pending review.', 'success');
+      showToast('Sweet shop registered! Your shop is active and ready to sell.', 'success');
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Registration failed.';
       setErrorMsg(msg);
@@ -110,11 +110,10 @@ export default function SellerRegisterPage() {
           </div>
 
           <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--maroon-primary)', marginBottom: '0.75rem' }}>
-            Application Submitted!
+            Sweet Shop Registered!
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-            Welcome, <strong>{successData.business_name}</strong>! Your sweet shop vendor registration has been safely received.
-            Your verification status is currently <strong>PENDING</strong>.
+            Welcome, <strong>{successData.business_name}</strong>! Your sweet shop is active and ready to sell!
           </p>
 
           <div style={{
@@ -130,8 +129,8 @@ export default function SellerRegisterPage() {
             </p>
             <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
               <li>Sign in using your seller email and password.</li>
-              <li>Upload your FSSAI certificate, GST document, and business proof in your Seller Portal.</li>
-              <li>Once our platform Admin reviews and approves your documents, your shop will go live and start accepting orders!</li>
+              <li>Go directly to your Seller Portal to add your sweets and set stock quantities.</li>
+              <li>Your shop and sweets appear immediately for customers to discover and order!</li>
             </ul>
           </div>
 

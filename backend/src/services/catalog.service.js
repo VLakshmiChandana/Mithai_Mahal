@@ -215,9 +215,9 @@ async function createProduct(sellerId, data) {
   }
 
   const seller = sellerRows[0];
-  if (seller.verification_status !== 'APPROVED' || seller.account_status !== 'ACTIVE') {
+  if (seller.account_status === 'SUSPENDED' || seller.account_status === 'TERMINATED') {
     throw new ForbiddenError(
-      `Only approved and active sellers can publish products. Your current status is ${seller.verification_status} (${seller.account_status}).`
+      `Suspended seller accounts cannot publish products (${seller.account_status}).`
     );
   }
 
@@ -323,8 +323,8 @@ async function listProducts({
     params.push(term, term);
   }
 
-  // Ensure products are only listed for active and approved sellers
-  conditions.push("s.is_active = TRUE AND s.account_status = 'ACTIVE' AND s.verification_status = 'APPROVED'");
+  // Ensure products are only listed for active, non-suspended sellers
+  conditions.push("s.is_active = TRUE AND s.account_status != 'SUSPENDED' AND s.account_status != 'TERMINATED'");
 
   const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
@@ -416,9 +416,9 @@ async function updateProduct(productId, sellerId, updates) {
     );
     if (sellerRows.length > 0) {
       const seller = sellerRows[0];
-      if (seller.verification_status !== 'APPROVED' || seller.account_status !== 'ACTIVE') {
+      if (seller.account_status === 'SUSPENDED' || seller.account_status === 'TERMINATED') {
         throw new ForbiddenError(
-          `Cannot publish or make product active while seller verification status is ${seller.verification_status}.`
+          `Cannot publish or make product active while seller account is suspended (${seller.account_status}).`
         );
       }
     }
