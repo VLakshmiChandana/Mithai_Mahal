@@ -159,8 +159,25 @@ app.use(errorHandler);
 
 // Start the HTTP server only if executed directly
 if (require.main === module) {
-  app.listen(config.port, () => {
+  const server = app.listen(config.port, () => {
     console.log(`[Sweet Shop Backend] Server listening on port ${config.port} (${config.nodeEnv})`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\n[FATAL ERROR] Port ${config.port} is already in use by another application.`);
+      console.error(`Note for macOS: AirPlay Receiver uses port 5000 by default. Turn off AirPlay Receiver in System Settings -> General -> AirDrop & AirPlay, or set PORT=5001 in your .env file.\n`);
+    } else {
+      console.error('[FATAL SERVER ERROR]', err);
+    }
+  });
+
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error('[UNHANDLED REJECTION]', reason);
+  });
+
+  process.on('uncaughtException', (err) => {
+    console.error('[UNCAUGHT EXCEPTION]', err);
   });
 }
 
