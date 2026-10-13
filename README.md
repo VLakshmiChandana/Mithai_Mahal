@@ -359,81 +359,89 @@ The platform runs on a normalized **MySQL 8.0** schema with 31 interconnected ta
 
 ---
 
-## 🚀 Quick Start & Installation
+## 🚀 Quick Start & Laptop Handover (MySQL Workbench)
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v18.0.0 or higher)
-- [MySQL Server](https://www.mysql.com/) (v8.0 or higher)
+- [MySQL Server & MySQL Workbench](https://dev.mysql.com/downloads/workbench/) (v8.0 or higher)
 - Git
 
-### 1. Clone the Repository
+---
+
+### Step 1: Clone Repository
 ```bash
 git clone https://github.com/VLakshmiChandana/Mithai_Mahal.git
 cd Mithai_Mahal
 ```
 
-### 2. Configure Backend Service
+---
+
+### Step 2: Import Database in MySQL Workbench (⚡ 1-Click Setup)
+You do not need to run manual SQL migrations. A complete, standalone database dump with all 31 tables, foreign keys, and seed records is provided:
+
+1. Open **MySQL Workbench** and connect to your local MySQL instance (port `3306`).
+2. Go to **File → Open SQL Script...** (or press `Ctrl + Shift + O`).
+3. Select the file:
+   ```
+   database/sweet_shop_delivery_workbench.sql
+   ```
+4. Click the **⚡ Execute** (lightning bolt) icon on the toolbar.
+5. In the left **Schemas** pane, right-click and select **Refresh All** — the `sweet_shop_delivery` database is now fully populated!
+
+---
+
+### Step 3: Configure & Start Backend Service
 ```bash
 cd backend
 npm install
 
-# Setup environment configuration
+# Copy environment template
 cp .env.example .env
 ```
 
-Edit `backend/.env` with your local database credentials:
+Open `backend/.env` and update your MySQL Workbench password:
 ```env
 PORT=5000
 NODE_ENV=development
 
-DB_HOST=127.0.0.1
+# Enter your local MySQL credentials
+DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=your_mysql_password
+DB_PASSWORD=your_mysql_workbench_password
 DB_NAME=sweet_shop_delivery
 
-JWT_SECRET=super_secret_jwt_key_mithai_mahal_2026
-JWT_REFRESH_SECRET=super_secret_refresh_key_mithai_mahal_2026
-
-RAZORPAY_KEY_ID=rzp_test_your_key_id
-RAZORPAY_KEY_SECRET=your_key_secret
+# Pre-configured JWT Secrets & test Razorpay keys are already set in .env.example!
 ```
 
-### 3. Initialize Database & Seed Demo Data
+Start the backend:
 ```bash
-# Verify MySQL connection
-node scripts/test-db-connection.js
-
-# Seed default Super Admin & Operations Admin accounts
-node scripts/seed-superadmin.js
-
-# Seed artisanal sweet shops and initial product catalog
-node scripts/seed-customer-catalog.js
-
-# Start backend server
 npm run dev
 ```
 > Backend runs at: `http://localhost:5000`
 
-### 4. Configure Frontend Client
+---
+
+### Step 4: Start Frontend Client
+In a new terminal window:
 ```bash
 cd ../frontend
 npm install
-
-# Setup environment configuration
-cp .env.example .env
-```
-
-Ensure `frontend/.env` points to your backend instance:
-```env
-VITE_API_BASE_URL=http://localhost:5000/api/v1
-```
-
-```bash
-# Start frontend Vite server
 npm run dev
 ```
-> Frontend runs at: `http://localhost:5173`
+> Frontend runs at: `http://localhost:5173` *(Vite automatically proxies all `/api` requests to port `5000`)*
+
+---
+
+### 🔑 Demo Accounts for Local Testing
+
+| Portal | Email | Password | Role / Access |
+|---|---|---|---|
+| **Super Admin Dashboard** | `superadmin@mithaimahal.com` | `SuperAdminPass123!` | Executive Analytics, System Overseer |
+| **Operations Command Center**| `admin@gmail.com` | `AdminPassword123!` | KYC Document Audit, Approvals, Orders |
+| **Customer Experience** | `test.customer@gmail.com` | `Password123!` | Sweets Discovery, Cart, Tracking |
+
+*(You can also register a brand new Customer or Sweet Shop vendor directly on the website).*
 
 ---
 
