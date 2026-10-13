@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF7" />
+      <stop offset="100%" stop-color="#FCEBD2" />
+    </linearGradient>
+    <radialGradient id="plateGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#FAF0E6" />
+      <stop offset="95%" stop-color="#CFD8DC" />
+      <stop offset="100%" stop-color="#90A4AE" />
+    </radialGradient>
+    <radialGradient id="jalebiGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="35%" stop-color="#FF9800" />
+      <stop offset="80%" stop-color="#F57C00" />
+      <stop offset="100%" stop-color="#E65100" />
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#5C061A" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)" />
+
+  <circle cx="300" cy="195" r="170" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.4" />
+
+  <!-- Silver Serving Plate -->
+  <ellipse cx="300" cy="225" rx="150" ry="85" fill="url(#plateGrad)" filter="url(#shadow)" stroke="#B0BEC5" stroke-width="2" />
+  <ellipse cx="300" cy="225" rx="130" ry="70" fill="#FFFBF0" stroke="#FFA000" stroke-width="1.2" opacity="0.6" />
+
+  <!-- Crispy Concentric Coiled Saffron Jalebis -->
+  <g filter="url(#shadow)">
+    <!-- Jalebi Left -->
+    <g transform="translate(240, 215) scale(0.9)">
+      <circle cx="0" cy="0" r="34" fill="none" stroke="url(#jalebiGrad)" stroke-width="14" stroke-linecap="round" />
+      <path d="M -20 -15 C -30 20, 30 25, 20 -10 C 10 -25, -15 -10, 0 10 C 12 15, 10 -5, -5 -5" fill="none" stroke="url(#jalebiGrad)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Jalebi Right -->
+    <g transform="translate(360, 215) scale(0.9)">
+      <circle cx="0" cy="0" r="34" fill="none" stroke="url(#jalebiGrad)" stroke-width="14" stroke-linecap="round" />
+      <path d="M -15 -20 C -28 15, 25 30, 22 -8 C 15 -22, -10 -15, 2 8 C 10 14, 12 -4, -4 -4" fill="none" stroke="url(#jalebiGrad)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Center Jalebi (Front Prime) -->
+    <g transform="translate(300, 205)">
+      <circle cx="0" cy="0" r="42" fill="none" stroke="url(#jalebiGrad)" stroke-width="16" stroke-linecap="round" />
+      <path d="M -26 -18 C -38 25, 38 32, 26 -12 C 14 -32, -18 -14, 0 14 C 14 20, 14 -6, -6 -6" fill="none" stroke="url(#jalebiGrad)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+
+  <!-- Sugar Crystals & Glaze Highlight -->
+  <circle cx="288" cy="182" r="2.5" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="318" cy="190" r="3" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="295" cy="215" r="2" fill="#FFFFFF" opacity="0.8" />
+
+  <!-- Saffron & Pistachio Sliver Garnish -->
+  <rect x="296" y="176" width="6" height="2" rx="1" fill="#4CAF50" transform="rotate(30 296 176)" />
+  <rect x="312" y="196" width="5.5" height="2" rx="1" fill="#2E7D32" transform="rotate(-25 312 196)" />
+  <path d="M 302 170 Q 306 173 308 178" stroke="#D84315" stroke-width="1.5" fill="none" stroke-linecap="round" />
+
+  <!-- Label Banner -->
+  <g transform="translate(300, 345)">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#800020" filter="url(#shadow)" />
+    <text text-anchor="middle" y="5" font-family="'Georgia', serif" font-size="14" font-weight="bold" fill="#FDFBF7" letter-spacing="1.5">
+      CRISPY SAFFRON JALEBI
+    </text>
+  </g>
+</svg>

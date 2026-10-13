@@ -1,0 +1,208 @@
+/* ==========================================================================
+   ORDERS PAGE & COMPACT DELIVERY PROGRESS INDICATOR
+   ========================================================================== */
+
+/* Live Polling Sync Status Pill */
+.orders-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #E8F8F0;
+  border: 1px solid #A3E4D7;
+  color: #1E824C;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.orders-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2ECC71;
+  box-shadow: 0 0 6px #2ECC71;
+  animation: ordersPulse 1.5s infinite;
+}
+
+@keyframes ordersPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* Compact Delivery Progress Container inside Order Card */
+.compact-delivery-section {
+  background: linear-gradient(135deg, #FCF8F5 0%, #FBF3EC 100%);
+  border: 1px solid #F0D7C2;
+  border-radius: var(--radius-sm, 6px);
+  padding: 1rem 1.25rem;
+  margin: 1.15rem 0;
+}
+
+.compact-delivery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.compact-delivery-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #7A1C1C;
+}
+
+.compact-delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #D4AF37;
+  color: #7A1C1C;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Compact Road Track */
+.compact-road-container {
+  position: relative;
+  width: 100%;
+  padding: 14px 0 6px;
+  margin-bottom: 0.4rem;
+}
+
+.compact-road-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #EADBCE;
+  border-radius: 999px;
+  overflow: visible;
+}
+
+.compact-road-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #7A1C1C 0%, #D4AF37 60%, #1E824C 100%);
+  border-radius: 999px;
+  transition: width 1s linear;
+}
+
+/* Mini Moving Scooter Marker */
+.compact-scooter-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+  transition: left 1s linear;
+  filter: drop-shadow(0 2px 4px rgba(122, 28, 28, 0.3));
+}
+
+.compact-scooter-marker.bouncing {
+  animation: compactBounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes compactBounce {
+  0% { transform: translate(-50%, -50%) translateY(0); }
+  100% { transform: translate(-50%, -50%) translateY(-1px); }
+}
+
+/* 4 Waypoints Row */
+.compact-waypoints-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.compact-waypoint-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 70px;
+}
+
+.compact-waypoint-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #C8B8A6;
+  margin-bottom: 4px;
+  transition: all 0.3s;
+}
+
+.compact-waypoint-dot.completed {
+  background: #1E824C;
+  border-color: #1E824C;
+}
+
+.compact-waypoint-dot.active {
+  background: #7A1C1C;
+  border-color: #7A1C1C;
+  box-shadow: 0 0 0 3px rgba(122, 28, 28, 0.2);
+}
+
+.compact-waypoint-text {
+  font-size: 0.68rem;
+  line-height: 1.2;
+  color: #7D6B5D;
+  font-weight: 500;
+}
+
+.compact-waypoint-text.active {
+  color: #7A1C1C;
+  font-weight: 700;
+}
+
+.compact-waypoint-text.completed {
+  color: #2C221E;
+  font-weight: 600;
+}
+
+.compact-rider-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: #634C3D;
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgba(212, 175, 55, 0.3);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .orders-live-dot,
+  .compact-scooter-marker.bouncing {
+    animation: none !important;
+  }
+  .compact-scooter-marker,
+  .compact-road-progress {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .compact-waypoint-col {
+    width: 58px;
+  }
+  .compact-waypoint-text {
+    font-size: 0.62rem;
+  }
+}

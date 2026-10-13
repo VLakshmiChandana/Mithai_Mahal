@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF7" />
+      <stop offset="100%" stop-color="#FCEBD2" />
+    </linearGradient>
+    <radialGradient id="jamunGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#8D4320" />
+      <stop offset="45%" stop-color="#542008" />
+      <stop offset="85%" stop-color="#300F03" />
+      <stop offset="100%" stop-color="#1A0701" />
+    </radialGradient>
+    <radialGradient id="syrupGrad" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#FFE082" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#FFB300" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#E65100" stop-opacity="0.85" />
+    </radialGradient>
+    <radialGradient id="bowlGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="65%" stop-color="#FFFFFF" />
+      <stop offset="90%" stop-color="#CFD8DC" />
+      <stop offset="100%" stop-color="#90A4AE" />
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4E0812" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)" />
+
+  <!-- Traditional Decorative Ring -->
+  <circle cx="300" cy="195" r="170" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.45" />
+
+  <!-- Ceramic Serving Bowl -->
+  <ellipse cx="300" cy="225" rx="145" ry="85" fill="url(#bowlGrad)" filter="url(#shadow)" stroke="#B0BEC5" stroke-width="2" />
+  
+  <!-- Aromatic Warm Rose Sugar Syrup Pool -->
+  <ellipse cx="300" cy="220" rx="122" ry="68" fill="url(#syrupGrad)" stroke="#FFA000" stroke-width="1.5" />
+
+  <!-- Three Golden-Brown Gulab Jamuns in Syrup -->
+  <g filter="url(#shadow)">
+    <!-- Jamun 1 (Left) -->
+    <circle cx="250" cy="210" r="38" fill="url(#jamunGrad)" />
+    <!-- Jamun 2 (Right) -->
+    <circle cx="348" cy="212" r="37" fill="url(#jamunGrad)" />
+    <!-- Jamun 3 (Center Front) -->
+    <circle cx="298" cy="226" r="42" fill="url(#jamunGrad)" />
+  </g>
+
+  <!-- Syrup Glaze Highlights on Jamuns -->
+  <ellipse cx="288" cy="204" rx="16" ry="7" fill="#FFFFFF" opacity="0.45" transform="rotate(-15 288 204)" />
+  <ellipse cx="240" cy="192" rx="13" ry="5.5" fill="#FFFFFF" opacity="0.4" transform="rotate(-15 240 192)" />
+  <ellipse cx="340" cy="194" rx="12" ry="5.5" fill="#FFFFFF" opacity="0.4" transform="rotate(-15 340 194)" />
+
+  <!-- Rose Petals & Almond / Pistachio Sliver Garnish -->
+  <!-- Rose Petals -->
+  <path d="M 270 240 Q 280 235 285 245 Q 275 250 270 240 Z" fill="#E91E63" opacity="0.85" />
+  <path d="M 330 235 Q 340 230 345 240 Q 335 246 330 235 Z" fill="#D81B60" opacity="0.85" />
+  <path d="M 305 180 Q 312 176 317 184 Q 310 188 305 180 Z" fill="#E91E63" opacity="0.9" />
+
+  <!-- Pistachio Sliver Cuts -->
+  <rect x="290" y="215" width="7" height="2.5" rx="1" fill="#4CAF50" transform="rotate(35 290 215)" />
+  <rect x="306" y="222" width="6" height="2" rx="1" fill="#2E7D32" transform="rotate(-20 306 222)" />
+  <rect x="246" y="200" width="6" height="2.5" rx="1" fill="#4CAF50" transform="rotate(40 246 200)" />
+  <rect x="352" y="202" width="6" height="2.5" rx="1" fill="#388E3C" transform="rotate(-30 352 202)" />
+
+  <!-- Saffron Strands Floating in Syrup -->
+  <path d="M 315 242 Q 320 245 322 252" stroke="#D84315" stroke-width="1.5" fill="none" stroke-linecap="round" />
+  <path d="M 260 230 Q 265 233 268 238" stroke="#D84315" stroke-width="1.5" fill="none" stroke-linecap="round" />
+
+  <!-- Label Banner -->
+  <g transform="translate(300, 345)">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#800020" filter="url(#shadow)" />
+    <text text-anchor="middle" y="5" font-family="'Georgia', serif" font-size="14" font-weight="bold" fill="#FDFBF7" letter-spacing="1.5">
+      SHAHI ROSE GULAB JAMUN
+    </text>
+  </g>
+</svg>

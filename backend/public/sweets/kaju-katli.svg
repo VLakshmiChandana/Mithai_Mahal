@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF7" />
+      <stop offset="100%" stop-color="#FCEBD2" />
+    </linearGradient>
+    <radialGradient id="plateGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#FAF0E6" />
+      <stop offset="95%" stop-color="#CFD8DC" />
+      <stop offset="100%" stop-color="#90A4AE" />
+    </radialGradient>
+    <linearGradient id="katliGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E7" />
+      <stop offset="40%" stop-color="#F7E7CE" />
+      <stop offset="100%" stop-color="#E5D3B3" />
+    </linearGradient>
+    <linearGradient id="varkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="40%" stop-color="#ECEFF1" stop-opacity="0.8" />
+      <stop offset="80%" stop-color="#B0BEC5" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.95" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#5C061A" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)" />
+
+  <circle cx="300" cy="195" r="170" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.4" />
+
+  <!-- Thali / Silver Plate -->
+  <ellipse cx="300" cy="225" rx="155" ry="90" fill="url(#plateGrad)" filter="url(#shadow)" stroke="#B0BEC5" stroke-width="2" />
+  <ellipse cx="300" cy="225" rx="135" ry="75" fill="#FFFBF2" stroke="#D4AF37" stroke-width="1" opacity="0.7" />
+
+  <!-- Diamond Rhombus Kaju Katlis Arranged Artfully -->
+  <g filter="url(#shadow)">
+    <!-- Katli 1 (Left) -->
+    <polygon points="220,185 255,200 225,230 190,215" fill="url(#katliGrad)" stroke="#C7B299" stroke-width="1" />
+    <!-- Silver Foil on Katli 1 -->
+    <polygon points="215,190 240,202 220,222 195,210" fill="url(#varkGrad)" opacity="0.7" />
+
+    <!-- Katli 2 (Right) -->
+    <polygon points="375,185 410,200 380,230 345,215" fill="url(#katliGrad)" stroke="#C7B299" stroke-width="1" />
+    <polygon points="370,190 395,202 375,222 350,210" fill="url(#varkGrad)" opacity="0.7" />
+
+    <!-- Katli 3 (Center Top) -->
+    <polygon points="300,150 340,170 300,205 260,185" fill="url(#katliGrad)" stroke="#C7B299" stroke-width="1.2" />
+    <polygon points="295,155 330,172 295,200 268,183" fill="url(#varkGrad)" opacity="0.85" />
+
+    <!-- Katli 4 (Center Front Main) -->
+    <polygon points="300,195 350,220 300,260 250,235" fill="url(#katliGrad)" stroke="#B39977" stroke-width="1.5" />
+    <!-- Realistic Silver Vark Layer with Delicate Texture -->
+    <polygon points="292,202 338,223 294,252 258,232" fill="url(#varkGrad)" opacity="0.9" />
+  </g>
+
+  <!-- Crushed Pistachio Garnish Accent -->
+  <rect x="295" y="218" width="6" height="2" rx="1" fill="#4CAF50" transform="rotate(35 295 218)" />
+  <rect x="305" y="224" width="5" height="2" rx="1" fill="#2E7D32" transform="rotate(-20 305 224)" />
+
+  <!-- Label Banner -->
+  <g transform="translate(300, 345)">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#800020" filter="url(#shadow)" />
+    <text text-anchor="middle" y="5" font-family="'Georgia', serif" font-size="14" font-weight="bold" fill="#FDFBF7" letter-spacing="1.5">
+      DIAMOND KAJU KATLI
+    </text>
+  </g>
+</svg>

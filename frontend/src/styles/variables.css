@@ -1,0 +1,54 @@
+:root {
+  /* Sweet Shop Heritage Color Palette */
+  --bg-cream: #FDFBF7;
+  --bg-cream-warm: #FAF5ED;
+  --bg-cream-card: #FFFFFF;
+  --bg-cream-alt: #F4ECE1;
+
+  --maroon-primary: #7A1C1C;
+  --maroon-dark: #521212;
+  --maroon-light: #9B2929;
+  --maroon-subtle: #F9EBEB;
+
+  --saffron-primary: #E67E22;
+  --saffron-gold: #D4AF37;
+  --saffron-light: #FAD7A0;
+  --gold-accent: #C59B27;
+
+  --veg-green: #1E824C;
+  --veg-green-bg: #E8F8F0;
+  
+  --text-primary: #2C221E;
+  --text-secondary: #6B584E;
+  --text-muted: #9C897E;
+  --text-inverse: #FFFFFF;
+
+  --border-subtle: #EADBCE;
+  --border-focus: #7A1C1C;
+
+  --danger: #C0392B;
+  --danger-bg: #FDEDEC;
+  --warning: #D35400;
+  --warning-bg: #FEF5E7;
+  --info: #2980B9;
+  --info-bg: #EBF5FB;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 2px 6px rgba(122, 28, 28, 0.05);
+  --shadow-md: 0 4px 16px rgba(122, 28, 28, 0.08);
+  --shadow-lg: 0 10px 30px rgba(122, 28, 28, 0.12);
+  --shadow-card: 0 4px 20px rgba(80, 20, 20, 0.06);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+
+  /* Layout Widths */
+  --max-width: 1240px;
+}

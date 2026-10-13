@@ -1,0 +1,298 @@
+/* ==========================================================================
+   MITHAI MAHAL - SALES & ORDER TRAJECTORY CHART STYLING
+   ========================================================================== */
+
+.sales-trajectory-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle, #EADBCE);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(122, 28, 28, 0.04);
+  position: relative;
+}
+
+.sales-trajectory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sales-trajectory-title h3 {
+  font-size: 1.2rem;
+  color: #7A1C1C;
+  font-family: var(--font-serif, Georgia, serif);
+  margin: 0 0 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sales-trajectory-title p {
+  font-size: 0.84rem;
+  color: #6B5B52;
+  margin: 0;
+}
+
+.sales-trajectory-controls {
+  display: flex;
+  gap: 6px;
+  background: #FAF6F1;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid #EDE3DA;
+}
+
+.range-btn {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #6B5B52;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.range-btn:hover {
+  color: #7A1C1C;
+}
+
+.range-btn.active {
+  background: #7A1C1C;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(122, 28, 28, 0.25);
+}
+
+/* Legend & Metric Summary Bar */
+.sales-trajectory-legend-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #FCF9F6;
+  border-radius: 8px;
+  border: 1px solid #F2E8DF;
+  margin-bottom: 1.25rem;
+  font-size: 0.82rem;
+}
+
+.legend-items {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4A3B32;
+  font-weight: 500;
+}
+
+.legend-swatch-bar {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #D4AF37 0%, #7A1C1C 100%);
+  display: inline-block;
+}
+
+.legend-swatch-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.legend-swatch-line::before {
+  content: '';
+  width: 16px;
+  height: 3px;
+  background: #E67E22;
+  border-radius: 2px;
+}
+
+.legend-summary-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.82rem;
+}
+
+.summary-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.summary-stat-pill strong {
+  color: #7A1C1C;
+  font-weight: 700;
+}
+
+/* Chart Canvas & SVG Container */
+.chart-svg-container {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  user-select: none;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Interactive SVG Elements */
+.chart-bar-rect {
+  cursor: pointer;
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.chart-bar-rect:hover,
+.chart-bar-rect.active {
+  filter: drop-shadow(0 3px 6px rgba(122, 28, 28, 0.35));
+  opacity: 0.95;
+}
+
+.chart-line-point {
+  cursor: pointer;
+  transition: r 0.2s, stroke-width 0.2s;
+}
+
+.chart-line-point:hover,
+.chart-line-point.active {
+  r: 7;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 2px 4px rgba(230, 126, 34, 0.4));
+}
+
+/* HTML Overlay Tooltip */
+.chart-html-tooltip {
+  position: absolute;
+  top: 15px;
+  pointer-events: none;
+  background: rgba(30, 20, 18, 0.95);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  font-size: 0.8rem;
+  z-index: 20;
+  min-width: 170px;
+  transform: translateX(-50%);
+  transition: left 0.1s ease-out;
+}
+
+.chart-html-tooltip .tt-date {
+  font-weight: 700;
+  color: #FAD7A0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+}
+
+.chart-html-tooltip .tt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 3px;
+  color: #E0D3C5;
+}
+
+.chart-html-tooltip .tt-row strong {
+  color: #FFFFFF;
+}
+
+.chart-html-tooltip .tt-revenue {
+  color: #D4AF37;
+  font-weight: 700;
+}
+
+.chart-html-tooltip .tt-orders {
+  color: #F39C12;
+  font-weight: 700;
+}
+
+/* Empty State */
+.chart-empty-state {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  color: #8C7B70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #FCF9F6;
+  border-radius: 8px;
+  border: 1px dashed #E0D3C5;
+}
+
+.chart-empty-state h4 {
+  font-size: 1.05rem;
+  color: #7A1C1C;
+  margin: 0;
+}
+
+.chart-empty-state p {
+  font-size: 0.86rem;
+  margin: 0;
+  max-width: 380px;
+}
+
+/* Loading Overlay */
+.chart-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #7A1C1C;
+  font-weight: 600;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .chart-bar-rect,
+  .chart-line-point,
+  .range-btn {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .sales-trajectory-card {
+    padding: 1.25rem 1rem;
+  }
+  .sales-trajectory-legend-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .legend-summary-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

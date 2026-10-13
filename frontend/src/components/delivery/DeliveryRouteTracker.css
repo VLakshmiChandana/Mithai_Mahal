@@ -1,0 +1,507 @@
+/* ==========================================================================
+   MITHAI MAHAL - ANIMATED LIVE DELIVERY ROUTE TRACKER
+   ========================================================================== */
+
+/* Main Stepper Container */
+.delivery-tracker-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0 2.5rem;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Simulation Live Meta Header Bar
+   -------------------------------------------------------------------------- */
+.simulation-live-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  padding: 0.75rem 1.15rem;
+  background: linear-gradient(135deg, #FFF9F2 0%, #FFF2E6 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-md, 8px);
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(122, 28, 28, 0.05);
+}
+
+.sim-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #7A1C1C;
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.sim-spin-icon {
+  animation: spinSlow 12s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sim-meta-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+  color: #4A3B32;
+}
+
+.sim-progress-indicator strong {
+  color: #7A1C1C;
+  font-weight: 700;
+}
+
+.sim-divider {
+  color: #D4AF37;
+  font-weight: bold;
+}
+
+.sim-countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #7A1C1C;
+  font-size: 0.82rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.sim-replay-btn {
+  font-size: 0.78rem !important;
+  padding: 0.35rem 0.85rem !important;
+  border-color: #D4AF37 !important;
+  color: #7A1C1C !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sim-replay-btn:hover {
+  background: #7A1C1C !important;
+  color: #FFFFFF !important;
+}
+
+.spin-anim {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Stepper Milestones Row & Asphalt Road Track
+   -------------------------------------------------------------------------- */
+.delivery-stepper-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  padding-top: 50px;
+}
+
+/* Authentic Asphalt Road Track */
+.delivery-road-track {
+  position: absolute;
+  top: 65px;
+  left: 45px;
+  right: 45px;
+  height: 8px;
+  background: #EADBCE;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Road Center Dashed Line */
+.delivery-road-dashes {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9) 0,
+    rgba(255, 255, 255, 0.9) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+  opacity: 0.85;
+}
+
+/* Active Completed Road Progress Gradient */
+.delivery-road-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #7A1C1C 0%, #D4AF37 55%, #1E824C 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Road Glow Leading Edge */
+.delivery-road-glow {
+  position: absolute;
+  right: -2px;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0) 70%);
+  animation: pulseRoadGlow 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseRoadGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* Milestone Checkpoint Nodes */
+.checkpoint-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  width: 95px;
+  text-align: center;
+}
+
+.checkpoint-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 2px solid var(--border-subtle, #E0D3C5);
+  color: var(--text-muted, #8C7B70);
+  margin-bottom: 0.4rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.checkpoint-circle.completed {
+  background: #1E824C;
+  border-color: #1E824C;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(30, 130, 76, 0.25);
+}
+
+.checkpoint-circle.active {
+  background: #7A1C1C;
+  border-color: #7A1C1C;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 5px rgba(122, 28, 28, 0.15), 0 3px 10px rgba(122, 28, 28, 0.3);
+  animation: checkpointActivePulse 2s infinite;
+}
+
+@keyframes checkpointActivePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(122, 28, 28, 0.15), 0 3px 10px rgba(122, 28, 28, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(122, 28, 28, 0.10), 0 4px 14px rgba(122, 28, 28, 0.4);
+  }
+}
+
+.checkpoint-label {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: var(--text-secondary, #6B5B52);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.checkpoint-label.active {
+  color: #7A1C1C;
+  font-weight: 700;
+}
+
+.checkpoint-label.completed {
+  color: var(--text-primary, #2C221E);
+  font-weight: 600;
+}
+
+.checkpoint-timestamp {
+  font-size: 0.68rem;
+  color: #8C7B70;
+  font-family: monospace;
+  margin-top: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Animated Delivery Scooter Vehicle
+   -------------------------------------------------------------------------- */
+.delivery-truck-vehicle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -84%);
+  z-index: 6;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes tooltipFloatNearStart {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(-13px); }
+}
+
+@keyframes tooltipFloatNearEnd {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(-13px); }
+}
+
+/* Edge safety so floating status pill does not overflow off card margins */
+.delivery-truck-vehicle.near-start .truck-floating-pill {
+  left: 0px;
+  animation: tooltipFloatNearStart 2s ease-in-out infinite alternate;
+}
+
+.delivery-truck-vehicle.near-start .truck-floating-pill::after {
+  left: 32px;
+  transform: none;
+}
+
+.delivery-truck-vehicle.near-end .truck-floating-pill {
+  left: auto;
+  right: 0px;
+  animation: tooltipFloatNearEnd 2s ease-in-out infinite alternate;
+}
+
+.delivery-truck-vehicle.near-end .truck-floating-pill::after {
+  left: auto;
+  right: 32px;
+  transform: none;
+}
+
+/* Scooter Chassis with Suspension Driving Bounce */
+.scooter-chassis {
+  position: relative;
+  filter: drop-shadow(0 4px 8px rgba(82, 18, 18, 0.35));
+}
+
+.scooter-chassis.moving {
+  animation: scooterSuspensionBounce 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes scooterSuspensionBounce {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-1.5px) rotate(-0.5deg); }
+  100% { transform: translateY(0.5px) rotate(0.5deg); }
+}
+
+/* Wheel Rotation */
+.wheel-rotating {
+  transform-origin: center;
+  animation: spinWheel 0.55s linear infinite;
+}
+
+@keyframes spinWheel {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Headlight Light Cone */
+.headlight-cone {
+  animation: headlightFlicker 1.8s ease-in-out infinite;
+}
+
+@keyframes headlightFlicker {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.95; }
+}
+
+/* Floating Status Tooltip Pill */
+.truck-floating-pill {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(30, 20, 18, 0.94);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  pointer-events: auto;
+  z-index: 10;
+  animation: tooltipFloat 2s ease-in-out infinite alternate;
+}
+
+.truck-floating-pill::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(30, 20, 18, 0.94) transparent transparent transparent;
+}
+
+@keyframes tooltipFloat {
+  0% { transform: translateX(-50%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(-13px); }
+}
+
+/* Blinking Status Beacon Indicator */
+.status-beacon-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2ECC71;
+  box-shadow: 0 0 6px #2ECC71;
+  animation: beaconBlink 1.2s infinite;
+}
+
+.status-beacon-dot.orange {
+  background: #E67E22;
+  box-shadow: 0 0 6px #E67E22;
+}
+
+@keyframes beaconBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* --------------------------------------------------------------------------
+   Payment Gate Banner
+   -------------------------------------------------------------------------- */
+.payment-gate-banner {
+  background: #FFF9F2;
+  border: 1.5px solid #F39C12;
+  border-radius: var(--radius-md, 8px);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  box-shadow: 0 3px 12px rgba(243, 156, 18, 0.12);
+}
+
+.payment-gate-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+  min-width: 280px;
+}
+
+.payment-gate-info h4 {
+  font-size: 1.05rem;
+  color: #B9770E;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 700;
+}
+
+.payment-gate-info p {
+  font-size: 0.88rem;
+  color: #784212;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.payment-gate-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion Preferences Support
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .scooter-chassis.moving,
+  .wheel-rotating,
+  .delivery-road-glow,
+  .headlight-cone,
+  .truck-floating-pill,
+  .checkpoint-circle.active,
+  .sim-spin-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .delivery-stepper-row {
+    padding-top: 45px;
+  }
+  .checkpoint-node-wrapper {
+    width: 68px;
+  }
+  .checkpoint-circle {
+    width: 32px;
+    height: 32px;
+  }
+  .delivery-road-track {
+    top: 57px;
+    left: 32px;
+    right: 32px;
+  }
+  .checkpoint-label {
+    font-size: 0.7rem;
+  }
+  .checkpoint-timestamp {
+    font-size: 0.62rem;
+  }
+  .truck-floating-pill {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    max-width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .delivery-truck-vehicle.near-start .truck-floating-pill {
+    left: -5px;
+  }
+  .delivery-truck-vehicle.near-end .truck-floating-pill {
+    right: -5px;
+  }
+  .simulation-live-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

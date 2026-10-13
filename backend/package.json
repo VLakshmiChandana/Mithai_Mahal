@@ -1,0 +1,48 @@
+{
+  "name": "sweet-shop-backend",
+  "version": "1.0.0",
+  "description": "Authentication and Authorization Service for Sweet Shop Delivery Platform",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node scripts/test-db-connection.js",
+    "test:services": "node scripts/test-phase3-services.js",
+    "test:middleware": "node scripts/test-phase4-middleware.js",
+    "test:e2e": "node scripts/test-phase5-e2e.js",
+    "test:catalog": "node scripts/test-phase6-catalog.js",
+    "test:cart": "node scripts/test-phase7-cart.js",
+    "test:orders": "node scripts/test-phase8-orders.js",
+    "test:payments": "node scripts/test-phase9-payments.js",
+    "test:delivery": "node scripts/test-phase10-delivery.js",
+    "test:simulation": "node scripts/test-phase22-simulation.js",
+    "test:public": "node scripts/test-phase11-public-discovery.js",
+    "test:journey": "node scripts/test-phase11-customer-journey.js",
+    "seed:catalog": "node scripts/seed-customer-catalog.js",
+    "superadmin:reset": "node scripts/seed-superadmin.js",
+    "test:seller-products": "node scripts/test-phase20-seller-products.js",
+    "test:uploads": "node scripts/test-phase21-image-uploads.js"
+  },
+  "keywords": [
+    "sweet-shop",
+    "auth",
+    "rbac",
+    "multi-tenant",
+    "express",
+    "mysql"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "joi": "^18.2.9",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.4.0",
+    "mysql2": "^3.24.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

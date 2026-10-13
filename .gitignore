@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+*/.env
+*/.env.*
+!*/.env.example
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+*/dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Uploads & User generated runtime files
+backend/private_uploads/*
+!backend/private_uploads/.gitkeep
+backend/private_uploads/seller_documents/*
+!backend/private_uploads/seller_documents/.gitkeep
+
+# OS and Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
