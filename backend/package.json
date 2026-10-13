@@ -20,6 +20,7 @@
     "test:journey": "node scripts/test-phase11-customer-journey.js",
     "seed:catalog": "node scripts/seed-customer-catalog.js",
     "superadmin:reset": "node scripts/seed-superadmin.js",
+    "setup:superadmin": "node scripts/setup-superadmin.js",
     "test:seller-products": "node scripts/test-phase20-seller-products.js",
     "test:uploads": "node scripts/test-phase21-image-uploads.js"
   },

@@ -77,6 +77,9 @@ export default function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="/superadmin" element={<Navigate to="/super-admin/dashboard" replace />} />
+                <Route path="/super-admin" element={<Navigate to="/super-admin/dashboard" replace />} />
+                <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
 
                 {/* Admin Operations Dashboard Route */}
                 <Route
