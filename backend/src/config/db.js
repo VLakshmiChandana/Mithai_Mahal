@@ -17,7 +17,8 @@ const pool = mysql.createPool({
   waitForConnections: config.db.waitForConnections,
   queueLimit: config.db.queueLimit,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 10000
+  keepAliveInitialDelay: 10000,
+  ...(process.env.DB_SSL === 'true' ? { ssl: { rejectUnauthorized: false } } : {})
 });
 
 /**
