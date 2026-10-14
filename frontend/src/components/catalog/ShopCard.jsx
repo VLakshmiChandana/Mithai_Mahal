@@ -3,17 +3,38 @@ import { Link } from 'react-router-dom';
 import { Store, CheckCircle, ArrowRight, Phone } from 'lucide-react';
 import { getMediaUrl } from '../../utils/imageUrl';
 
-const FALLBACK_SHOP_IMAGE = '/sweets/shop-storefront.svg';
+const SHOP_BANNER_PALETTE = [
+  '/sweets/shop-storefront.svg',
+  '/sweets/kaju-katli.svg',
+  '/sweets/gulab-jamun.svg',
+  '/sweets/crispy-jalebi.svg',
+  '/sweets/bengali-rasgulla.svg',
+  '/sweets/mysore-pak.svg'
+];
+
+function getShopBanner(shop) {
+  if (shop.logo || shop.profile_photo) {
+    return getMediaUrl(shop.logo || shop.profile_photo);
+  }
+  const str = shop.id || shop.business_name || '';
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const index = Math.abs(hash) % SHOP_BANNER_PALETTE.length;
+  return SHOP_BANNER_PALETTE[index];
+}
 
 export default function ShopCard({ shop }) {
   const { id, business_name, phone, logo, profile_photo } = shop;
-  const initialImage = getMediaUrl(logo || profile_photo) || FALLBACK_SHOP_IMAGE;
+  const initialImage = getShopBanner(shop);
   const [imgSrc, setImgSrc] = useState(initialImage);
   const [imgFailed, setImgFailed] = useState(false);
 
   const handleImageError = () => {
-    if (imgSrc !== FALLBACK_SHOP_IMAGE) {
-      setImgSrc(FALLBACK_SHOP_IMAGE);
+    if (imgSrc !== '/sweets/shop-storefront.svg') {
+      setImgSrc('/sweets/shop-storefront.svg');
     } else {
       setImgFailed(true);
     }

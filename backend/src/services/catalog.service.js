@@ -323,8 +323,8 @@ async function listProducts({
     params.push(term, term);
   }
 
-  // Ensure products are only listed for active, approved sellers
-  conditions.push("s.is_active = TRUE AND s.account_status = 'ACTIVE' AND s.verification_status = 'APPROVED'");
+  // Ensure products are only listed for active, approved sellers (excluding test runner accounts)
+  conditions.push("s.is_active = TRUE AND s.account_status = 'ACTIVE' AND s.verification_status = 'APPROVED' AND s.business_name NOT LIKE 'P18 %' AND s.business_name NOT LIKE 'P19 %'");
 
   const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 

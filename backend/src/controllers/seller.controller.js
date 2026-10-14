@@ -148,7 +148,13 @@ async function listPublicShops(req, res, next) {
     const [rows] = await pool.query(
       `SELECT id, business_name, email, phone, logo, profile_photo, created_at 
        FROM sellers 
-       WHERE is_active = TRUE AND account_status = 'ACTIVE' AND verification_status = 'APPROVED'
+       WHERE is_active = TRUE 
+         AND account_status = 'ACTIVE' 
+         AND verification_status = 'APPROVED'
+         AND business_name NOT LIKE 'P18 %'
+         AND business_name NOT LIKE 'P19 %'
+         AND business_name NOT LIKE 'Phase 25 %'
+         AND business_name NOT LIKE 'Admin Flow %'
        ORDER BY business_name ASC;`
     );
 
