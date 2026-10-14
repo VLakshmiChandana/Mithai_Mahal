@@ -54,8 +54,9 @@ async function handleWebhook(req, res, next) {
 async function mockCapture(req, res, next) {
   try {
     const config = require('../config/env');
-    if (config.nodeEnv === 'production' || config.payment.provider !== 'mock') {
-      throw new ForbiddenError('Mock payment capture is disabled in production environments.');
+    const isTestMode = config.payment.provider === 'mock' || config.payment.razorpayKeyId?.startsWith('rzp_test_') || process.env.ALLOW_MOCK_PAYMENT === 'true';
+    if (!isTestMode) {
+      throw new ForbiddenError('Mock payment capture is disabled in live production mode.');
     }
 
     const { orderId } = req.params;
@@ -201,8 +202,9 @@ async function verifyPaymentSignature(req, res, next) {
 async function generateTestSignature(req, res, next) {
   try {
     const config = require('../config/env');
-    if (config.nodeEnv === 'production') {
-      throw new ForbiddenError('Test signature generator is disabled in production environments.');
+    const isTestMode = config.payment.provider === 'mock' || config.payment.razorpayKeyId?.startsWith('rzp_test_') || process.env.ALLOW_MOCK_PAYMENT === 'true';
+    if (!isTestMode) {
+      throw new ForbiddenError('Test signature generator is disabled in live production mode.');
     }
 
     const razorpayOrderId = req.body.razorpayOrderId || req.body.razorpay_order_id;
