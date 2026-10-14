@@ -22,7 +22,8 @@
     "superadmin:reset": "node scripts/seed-superadmin.js",
     "setup:superadmin": "node scripts/setup-superadmin.js",
     "test:seller-products": "node scripts/test-phase20-seller-products.js",
-    "test:uploads": "node scripts/test-phase21-image-uploads.js"
+    "test:uploads": "node scripts/test-phase21-image-uploads.js",
+    "db:deploy": "node scripts/deploy-setup-db.js"
   },
   "keywords": [
     "sweet-shop",

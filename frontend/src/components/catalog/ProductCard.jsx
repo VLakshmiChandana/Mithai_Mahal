@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Plus, Minus, ShoppingBag, Eye } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-
-const FALLBACK_SWEET_IMAGE = '/sweets/motichoor-laddu.svg';
+import { getMediaUrl, FALLBACK_SWEET_IMAGE } from '../../utils/imageUrl';
 
 export default function ProductCard({ product, onViewDetails }) {
   const { addToCart, isLoading } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const isAvailable = product.availability_status === 'AVAILABLE' && product.stock_quantity > 0;
-  const imageSrc = product.image_url || FALLBACK_SWEET_IMAGE;
+  const imageSrc = getMediaUrl(product.image_url);
   const priceFormatted = Number(product.price).toFixed(2);
 
   const handleAdd = (e) => {

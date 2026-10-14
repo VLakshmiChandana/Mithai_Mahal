@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Store, ShieldCheck, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-
-const FALLBACK_SWEET_IMAGE = '/sweets/motichoor-laddu.svg';
+import { getMediaUrl, FALLBACK_SWEET_IMAGE } from '../utils/imageUrl';
 
 export default function CartPage() {
   const { cart, isLoading, updateQuantity, removeFromCart, clearCart } = useCart();
@@ -157,7 +156,7 @@ export default function CartPage() {
                   }}
                 >
                   <img
-                    src={item.image_url || FALLBACK_SWEET_IMAGE}
+                    src={getMediaUrl(item.image_url)}
                     alt={itemName}
                     onError={(e) => { e.target.src = FALLBACK_SWEET_IMAGE; }}
                     style={{

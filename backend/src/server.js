@@ -52,7 +52,7 @@ const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (config.nodeEnv === 'production' && process.env.CORS_ALLOWED_ORIGINS) {
-    if (origin && allowedOrigins.includes(origin)) {
+    if (origin && (allowedOrigins.includes(origin) || allowedOrigins.includes('*') || origin.endsWith('.vercel.app'))) {
       res.header('Access-Control-Allow-Origin', origin);
     }
   } else {

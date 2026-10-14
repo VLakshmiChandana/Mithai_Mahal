@@ -79,7 +79,8 @@ router.post('/image', uploadFields, async (req, res, next) => {
 
     fs.writeFileSync(targetPath, buffer);
 
-    const publicUrl = `/uploads/${folder}/${uniqueName}`;
+    const baseUrl = (process.env.BACKEND_URL || '').replace(/\/$/, '');
+    const publicUrl = baseUrl ? `${baseUrl}/uploads/${folder}/${uniqueName}` : `/uploads/${folder}/${uniqueName}`;
 
     res.status(201).json({
       success: true,

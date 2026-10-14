@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { Plus, Minus, ShoppingBag, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-
-const FALLBACK_SWEET_IMAGE = '/sweets/motichoor-laddu.svg';
+import { getMediaUrl, FALLBACK_SWEET_IMAGE } from '../../utils/imageUrl';
 
 export default function ProductDetailModal({ product, onClose }) {
   const { addToCart, isLoading } = useCart();
@@ -12,7 +11,7 @@ export default function ProductDetailModal({ product, onClose }) {
   if (!product) return null;
 
   const isAvailable = product.availability_status === 'AVAILABLE' && product.stock_quantity > 0;
-  const imageSrc = product.image_url || FALLBACK_SWEET_IMAGE;
+  const imageSrc = getMediaUrl(product.image_url);
   const priceFormatted = Number(product.price).toFixed(2);
 
   const handleAdd = () => {
