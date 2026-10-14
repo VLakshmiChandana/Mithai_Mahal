@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Store, CheckCircle, ArrowRight, Phone } from 'lucide-react';
+import { getMediaUrl } from '../../utils/imageUrl';
 
 const FALLBACK_SHOP_IMAGE = '/sweets/shop-storefront.svg';
 
 export default function ShopCard({ shop }) {
   const { id, business_name, phone, logo, profile_photo } = shop;
-  const initialImage = logo || profile_photo || FALLBACK_SHOP_IMAGE;
+  const initialImage = getMediaUrl(logo || profile_photo) || FALLBACK_SHOP_IMAGE;
   const [imgSrc, setImgSrc] = useState(initialImage);
   const [imgFailed, setImgFailed] = useState(false);
 

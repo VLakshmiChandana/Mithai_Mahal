@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import * as sellerApi from '../api/seller.api';
 import ErrorState from '../components/common/ErrorState';
+import { getMediaUrl, FALLBACK_SWEET_IMAGE } from '../utils/imageUrl';
 import {
   Package, Plus, Edit2, AlertTriangle, CheckCircle,
   Archive, ShieldAlert, TrendingDown, Layers, ArrowUpDown,
@@ -299,7 +300,7 @@ export default function SellerDashboardPage() {
           <div style={{ position: 'relative' }}>
             {profile?.logo ? (
               <img
-                src={profile.logo}
+                src={getMediaUrl(profile.logo)}
                 alt={profile.business_name}
                 onError={(e) => { e.target.style.display = 'none'; }}
                 style={{
@@ -555,10 +556,10 @@ export default function SellerDashboardPage() {
                   }}>
                     <div style={{ height: '160px', width: '100%', background: 'var(--bg-cream)', overflow: 'hidden' }}>
                       <img
-                        src={prod.image_url || '/sweets/motichoor-laddu.svg'}
+                        src={getMediaUrl(prod.image_url)}
                         alt={prod.name}
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        onError={(e) => { e.target.src = '/sweets/motichoor-laddu.svg'; }}
+                        onError={(e) => { e.target.src = FALLBACK_SWEET_IMAGE; }}
                       />
                     </div>
                     <div style={{ padding: '1rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -888,10 +889,10 @@ export default function SellerDashboardPage() {
                 }}>
                   {productForm.imageUrl ? (
                     <img
-                      src={productForm.imageUrl}
+                      src={getMediaUrl(productForm.imageUrl)}
                       alt="Preview"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      onError={(e) => { e.target.src = '/sweets/motichoor-laddu.svg'; }}
+                      onError={(e) => { e.target.src = FALLBACK_SWEET_IMAGE; }}
                     />
                   ) : (
                     <Image size={32} color="var(--text-muted)" />

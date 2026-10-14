@@ -20,6 +20,10 @@ export function getMediaUrl(path) {
       const origin = apiBase.replace(/\/api\/v1\/?$/, '');
       return `${origin}${path}`;
     }
+    // Fallback: If deployed on Vercel, ensure it fetches from the live Render backend
+    if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
+      return `https://mithai-mahal-backend.onrender.com${path}`;
+    }
   }
 
   return path;

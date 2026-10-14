@@ -9,6 +9,7 @@ import ProductDetailModal from '../components/catalog/ProductDetailModal';
 import CategoryPills from '../components/catalog/CategoryPills';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorState from '../components/common/ErrorState';
+import { getMediaUrl } from '../utils/imageUrl';
 
 const FALLBACK_BANNER = '/sweets/shop-storefront.svg';
 
@@ -120,7 +121,7 @@ export default function ShopDetailPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
               {shop?.logo ? (
                 <img
-                  src={shop.logo}
+                  src={getMediaUrl(shop.logo)}
                   alt={shop.business_name}
                   onError={(e) => { e.target.style.display = 'none'; }}
                   style={{
