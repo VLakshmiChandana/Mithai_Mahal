@@ -58,7 +58,7 @@ Mithai Mahal is architected as a modular, decoupled full-stack application follo
 
 ```mermaid
 flowchart TD
-    subgraph ClientLayer["🖥️ Frontend Client (React 18 + Vite)"]
+    subgraph ClientLayer["Frontend Client (React 18 + Vite)"]
         UI["Modern UI / CSS Design Tokens"]
         Router["React Router v6"]
         AxiosClient["Axios Interceptor (Bearer Token & Auto Refresh)"]
@@ -66,7 +66,7 @@ flowchart TD
         DeliveryTracker["DeliveryRouteTracker (rAF Engine)"]
     end
 
-    subgraph SecurityLayer["🛡️ API Gateway & Security Middleware"]
+    subgraph SecurityLayer["API Gateway & Security Middleware"]
         AuthMiddleware["JWT Authentication (Dual-Token)"]
         RBAC["Role-Based Access Control (RBAC)"]
         RateLimit["Rate Limiting & Anti-Bruteforce"]
@@ -74,7 +74,7 @@ flowchart TD
         Sanitizer["Path Traversal & Payload Validator"]
     end
 
-    subgraph ServiceLayer["⚙️ Domain Services"]
+    subgraph ServiceLayer["Domain Services"]
         CatalogService["Catalog & Inventory Service"]
         CartService["Cart & Vendor Lock Service"]
         OrderService["Order & Fulfillment Service"]
@@ -84,16 +84,31 @@ flowchart TD
         AuditService["Operational Audit Trail Service"]
     end
 
-    subgraph DataStorage["🗄️ Persistence & Storage"]
-        MySQL[("MySQL 8.0 Engine\n(31 Relational Tables)")]
-        PrivateStorage["Encrypted Private KYC Vault\n(Non-Public Filesystem)"]
+    subgraph DataStorage["Persistence & Storage"]
+        MySQL[("MySQL 8.0 Cloud Database")]
+        PrivateStorage["Encrypted Private KYC Vault"]
     end
 
     UI --> AxiosClient
     DeliveryTracker --> AxiosClient
-    AxiosClient -->|REST API Requests| SecurityLayer
-    SecurityLayer --> ServiceLayer
-    ServiceLayer --> MySQL
+    AxiosClient -->|REST API Requests| AuthMiddleware
+    AuthMiddleware --> RBAC
+    RBAC --> RateLimit
+    RateLimit --> TenantFilter
+    TenantFilter --> Sanitizer
+    Sanitizer --> CatalogService
+    Sanitizer --> CartService
+    Sanitizer --> OrderService
+    Sanitizer --> DeliveryEngine
+    Sanitizer --> PaymentEngine
+    Sanitizer --> KYCService
+    Sanitizer --> AuditService
+    CatalogService --> MySQL
+    CartService --> MySQL
+    OrderService --> MySQL
+    DeliveryEngine --> MySQL
+    PaymentEngine --> MySQL
+    AuditService --> MySQL
     KYCService --> PrivateStorage
 ```
 
@@ -113,7 +128,7 @@ sequenceDiagram
 
     Customer->>Frontend: Opens Order Tracking Page
     Frontend->>Backend: GET /api/v1/delivery/orders/:id/track
-    Backend->>DB: Query order_deliveries & simulation_started_at
+    Backend->>DB: Query order_deliveries and simulation_started_at
     alt First Request after Payment
         Backend->>DB: Record simulation_started_at = NOW()
     end
@@ -121,7 +136,7 @@ sequenceDiagram
     Backend-->>Frontend: JSON { simulation_started_at, telemetry }
     Note over Frontend: Elapsed = CurrentTime - simulation_started_at<br/>Progress = Clamped(Elapsed / 300, 0, 1.0)
     loop Every Animation Frame (requestAnimationFrame)
-        Frontend->>Frontend: Interpolate Scooter Position (0% -> 100%)
+        Frontend->>Frontend: Interpolate Scooter Position (0% to 100%)
         Frontend->>Frontend: Rotate Wheels & Update Milestone Badges
     end
     Note over Frontend: At 100s: Order Picked Up<br/>At 200s: Out for Delivery<br/>At 300s: Delivered
@@ -160,7 +175,7 @@ sequenceDiagram
     Customer->>RZP: Authorizes payment
     RZP-->>React: { razorpay_order_id, razorpay_payment_id, razorpay_signature }
     React->>Node: POST /api/v1/payments/verify-signature
-    Node->>Node: Compute HMAC-SHA256(order_id + "|" + payment_id, SECRET)
+    Node->>Node: Compute HMAC-SHA256(order_id + payment_id, secret)
     alt Signature Matches
         Node->>DB: Transaction: Update payment status to 'PAID'
         Node->>DB: Trigger delivery creation & inventory deduction
